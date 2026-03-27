@@ -80,8 +80,12 @@ Plug 'prabirshrestha/vim-lsp' " plugin para as LSPs
 Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 
-Plug 'neoclide/coc.nvim', {'branch':'release'}
+" plugin de auto-complete
+" see this for download https://github.com/ycm-core/youcompleteme?tab=readme-ov-file#linux-64-bit
+Plug 'ycm-core/youcompleteme'
 
+" plugins pra: html:5 igual do vscode mas da pra configurar para outras langs
+" aqui
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
@@ -94,6 +98,7 @@ Plug 'jiangmiao/auto-pairs'
 
 " tema
 Plug 'sainnhe/everforest'
+
 call plug#end()
 
 
@@ -116,7 +121,8 @@ set laststatus=2
 
 " ======================= tema ===========
 colorscheme everforest
-"=========== LSP =================
+
+" =========== LSP =================
 
 
 if executable('gopls')
@@ -143,12 +149,11 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" ---------------------------------
-" config for assembly (NASM)
-" disable all linters for 'asm' filetype
-" I dont use LSP ou anything to code in asm
-let g:ale_linters = {}
-let g:ale_linters.asm = []
+" config youcompleteme
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
-" ==== coc-clangd
-let g:coc_global_extensions = ['coc-clangd']
+" remove uma janela chata que ficava encima
+set completeopt-=preview
+
+" remove os avisos que tb eh chato
+let g:ycm_show_diagnostics_ui = 0
