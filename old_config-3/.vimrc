@@ -117,7 +117,27 @@ set laststatus=2
 " ======================= tema ===========
 colorscheme everforest
 "=========== LSP =================
+
+
+if executable('gopls')
+	au User lsp_setup call lsp#register_server({
+		\ 'name': 'gopls',
+		\ 'cmd': {server_info->['gopls']},
+		\ 'allowlist': ['go', 'mod', 'sum'],	
+		\ })
+endif
+
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '--background-index']},
+        \ 'allowlist': ['c', 'cpp', 'h'],
+        \ })
+endif
+" da pra configurar a forma deles nos arquivos desse plugin dentro de .vim
 " config utilsnips
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -131,18 +151,4 @@ let g:ale_linters = {}
 let g:ale_linters.asm = []
 
 " ==== coc-clangd
-" C/C++: coc-clangd
-
-" golang: coc-go gopls
-
-" java: coc-java (Eclipse JDT Language Server
-
-" rust: coc-rust-analyzer  rust-analyzer
-
-" html: coc-html
-
-" css: coc-css
-
-"JavaScript / TypeScript: coc-tsserver
-
-let g:coc_global_extensions = ['coc-clangd', 'coc-go', 'coc-java', 'coc-rust-analyzer', 'coc-html', 'coc-css', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-clangd']
