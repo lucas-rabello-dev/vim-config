@@ -146,10 +146,3 @@ let g:ale_linters.asm = []
 "JavaScript / TypeScript: coc-tsserver
 
 let g:coc_global_extensions = ['coc-clangd', 'coc-go', 'coc-java', 'coc-rust-analyzer', 'coc-html', 'coc-css', 'coc-tsserver']
-
-nnoremap <C-b> :NERDTreeToggle<CR>
-" n -> normal -> so ativa quando estiver no modo normal
-" nore -> nao recursivo, "nao se expande em outros mapeamentos"
-" map -> mapear tecla
-" <C-b> -> ctrl + b
-" <CR> -> enter
